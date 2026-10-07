@@ -1,0 +1,61 @@
+@page "/schools"
+@inject SchoolService SchoolService
+
+<h3>School Directory Dashboard</h3>
+
+<input class="form-control mb-3"
+       placeholder="Search school..."
+       @bind="Search"
+       @bind:event="oninput" />
+
+@if (schools == null && !error)
+{
+    <p>Loading schools...</p>
+}
+
+@if (error)
+{
+    <p class="text-danger">Unable to retrieve school data.</p>
+}
+
+@if (schools != null)
+{
+    <div class="row">
+        @foreach (var school in schools
+                      .Where(s => s.SchoolName.Contains(Search, StringComparison.OrdinalIgnoreCase)))
+        {
+            <div class="col-md-4">
+                <SchoolCard School="school" OnSelect="HandleSelect" />
+            </div>
+        }
+    </div>
+}
+
+@if (SelectedSchool != null)
+{
+    <SchoolDetails School="SelectedSchool" />
+}
+
+@code {
+    public string Search { get; set; } = "";
+    private List<School> schools;
+    private School SelectedSchool;
+    private bool error = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            schools = await SchoolService.GetSchoolsAsync();
+        }
+        catch
+        {
+            error = true;
+        }
+    }
+
+    private void HandleSelect(School school)
+    {
+        SelectedSchool = school;
+    }
+}
