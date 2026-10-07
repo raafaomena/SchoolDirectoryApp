@@ -1,5 +1,5 @@
 using SchoolDirectoryApp.Components;
-using SchoolDirectoryApp.Services;   // NEW
+using SchoolDirectoryApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddScoped<SchoolService>();   // NEW
+// Register HttpClient so SchoolService can use it
+builder.Services.AddHttpClient();
+
+// Register our custom service
+builder.Services.AddScoped<SchoolService>();
 
 var app = builder.Build();
 
