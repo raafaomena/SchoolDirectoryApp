@@ -1,0 +1,25 @@
+@* Reusable card that shows a summary of one school *@
+
+<div class="card p-3 mb-3">
+    <h5>@School.SchoolName</h5>
+    <p><strong>Address:</strong> @School.Address</p>
+    <p><strong>Phone:</strong> @School.PhoneNo</p>
+    <button class="btn btn-primary" @onclick="SelectSchool">
+        View Details
+    </button>
+</div>
+
+@code {
+    // The school data comes from the parent component
+    [Parameter]
+    public School School { get; set; }
+
+    // EventCallback lets this child notify the parent when clicked
+    [Parameter]
+    public EventCallback<School> OnSelect { get; set; }
+
+    private async Task SelectSchool()
+    {
+        await OnSelect.InvokeAsync(School);
+    }
+}
