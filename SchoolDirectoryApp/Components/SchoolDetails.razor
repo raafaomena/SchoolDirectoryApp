@@ -1,0 +1,25 @@
+@* Shows full details of the selected school *@
+
+@if (School != null)
+{
+    <div class="card border-info mt-4">
+        <div class="card-header bg-info text-white">
+            <h4>School Details</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>School ID:</strong> @School.SchoolId</p>
+            <p><strong>Name:</strong> @School.SchoolName</p>
+            <p><strong>Address:</strong> @School.Address</p>
+            <p><strong>Phone:</strong> @School.PhoneNo</p>
+            <p><strong>Email:</strong> @School.EmailAdress</p>
+            <p><strong>Proprietor:</strong> @School.ProprietorFullName</p>
+            <p><strong>Head:</strong> @School.HeadFullName</p>
+        </div>
+    </div>
+}
+
+@code {
+    // The selected school comes from the parent
+    [Parameter]
+    public School School { get; set; }
+}
