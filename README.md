@@ -55,23 +55,6 @@ SchoolDirectoryApp/
 
 6. Navigate to /schools or use the home page.
 
-## Screenshots
-
-### 1. School list loaded successfully
-![School list](screenshot-1-school-list.png)
-
-### 2. Search functionality
-![Search](screenshot-2-search.png)
-
-### 3. School details view
-![Details](screenshot-3-details.png)
-
-### 4. Loading state
-![Loading](screenshot-4-loading.png)
-
-### 5. Error state
-![Error](screenshot-5-error.png)
-
 ## Features Implemented
 
 - **API Integration:** The application uses HttpClient to retrieve data from the Edutots API and deserializes the JSON response into a List of School objects.
